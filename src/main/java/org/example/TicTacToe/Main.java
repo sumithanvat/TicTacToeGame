@@ -7,6 +7,7 @@ public class Main {
         // Display the initial board
         System.out.println("Initial Board:");
         game.displayBoard();
-
+        // Choose a letter
+        game.chooseLetter();
     }
 }
