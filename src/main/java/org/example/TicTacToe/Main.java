@@ -28,6 +28,21 @@ public class Main {
             int position = scanner.nextInt();
             game.makeMove(position);
             game.showBoard();
+
+            if (game.checkWinner()) {
+                System.out.println("Congratulations! " + game.currentPlayer + " wins!");
+                break; // Exit the game loop
+            } else if (game.isBoardFull()) {
+                System.out.println("It's a tie!");
+                break; // Exit the game loop
+            }
+
+            // Switch the turn to the next player
+            if (game.currentPlayer == 'X') {
+                game.currentPlayer = 'O';
+            } else {
+                game.currentPlayer = 'X';
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
     private char[] board;
-    private char currentPlayer;
+    char currentPlayer;
 
     public TicTacToeGame() {
         board = new char[10]; // Create a char array of size 10
@@ -50,5 +50,35 @@ public class TicTacToeGame {
         } else {
             System.out.println("Invalid position. Please choose a position from 1 to 9.");
         }
+    }
+
+    public boolean checkWinner() {
+        // Define the winning combinations
+        int[][] winningCombinations = {
+                {1, 2, 3}, {4, 5, 6}, {7, 8, 9}, // Rows
+                {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, // Columns
+                {1, 5, 9}, {3, 5, 7} // Diagonals
+        };
+
+        // Check for a winning combination
+        for (int[] combination : winningCombinations) {
+            int pos1 = combination[0];
+            int pos2 = combination[1];
+            int pos3 = combination[2];
+            if (board[pos1] == board[pos2] && board[pos2] == board[pos3] && board[pos1] != ' ') {
+                return true; // We have a winner
+            }
+        }
+
+        return false; // No winner yet
+    }
+
+    public boolean isBoardFull() {
+        for (int i = 1; i <= 9; i++) {
+            if (board[i] == ' ') {
+                return false; // There are still empty positions on the board
+            }
+        }
+        return true; // The board is full
     }
 }
