@@ -15,21 +15,30 @@ public class TicTacToeGame {
 
     public void displayBoard() {
         System.out.println(" " + board[1] + " | " + board[2] + " | " + board[3] + " "); // Display the board's first row
-        System.out.println("-----------"); // Display the separator line
+        System.out.println("-----------"); // Display separator line
         System.out.println(" " + board[4] + " | " + board[5] + " | " + board[6] + " "); // Display the board's second row
-        System.out.println("-----------"); // Display the separator line
+        System.out.println("-----------"); // Display separator line
         System.out.println(" " + board[7] + " | " + board[8] + " | " + board[9] + " "); // Display the board's third row
     }
+
     public void chooseLetter() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Choose a letter (X or O): ");
         char letter = scanner.nextLine().toUpperCase().charAt(0);
+        // Check if the letter is valid
         if (letter == 'X' || letter == 'O') {
+            // Set the chosen letter as the current player's letter
             currentPlayer = letter;
             System.out.println("You chose: " + currentPlayer);
         } else {
             System.out.println("Invalid letter choice. Please try again.");
+            // Recursive call to allow the player to choose again
             chooseLetter();
         }
+    }
+
+    public void showBoard() {
+        System.out.println("Current Board:");
+        displayBoard(); // Display the current state of the board
     }
 }
