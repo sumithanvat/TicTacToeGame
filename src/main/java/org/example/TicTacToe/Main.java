@@ -24,9 +24,24 @@ public class Main {
         // Perform the game moves
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("Enter a position to make your move (1-9): ");
-            int position = scanner.nextInt();
-            game.makeMove(position);
+            if (game.currentPlayer == 'X') {
+                // Computer's turn
+                int winningMove = game.getWinningMove();
+                if (winningMove != -1) {
+                    game.makeMove(winningMove);
+                    System.out.println("Computer made a winning move.");
+                } else {
+                    int position = game.getRandomEmptyPosition();
+                    game.makeMove(position);
+                    System.out.println("Computer made a random move.");
+                }
+            } else {
+                // User's turn
+                System.out.print("Enter a position to make your move (1-9): ");
+                int position = scanner.nextInt();
+                game.makeMove(position);
+            }
+
             game.showBoard();
 
             if (game.checkWinner()) {

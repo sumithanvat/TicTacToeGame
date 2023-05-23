@@ -1,9 +1,11 @@
 package org.example.TicTacToe;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
+
     private char[] board;
     char currentPlayer;
 
@@ -80,5 +82,29 @@ public class TicTacToeGame {
             }
         }
         return true; // The board is full
+    }
+
+    public int getRandomEmptyPosition() {
+        Random random = new Random();
+        int position;
+        do {
+            position = random.nextInt(9) + 1; // Generate a random position from 1 to 9
+        } while (board[position] != ' '); // Repeat if the position is not empty
+        return position;
+    }
+
+    public int getWinningMove() {
+        for (int i = 1; i <= 9; i++) {
+            if (board[i] == ' ') {
+                board[i] = currentPlayer; // Try making the move
+                if (checkWinner()) {
+                    board[i] = ' '; // Reset the move
+                    return i; // Return the winning move
+                } else {
+                    board[i] = ' '; // Reset the move
+                }
+            }
+        }
+        return -1; // No winning move found
     }
 }
